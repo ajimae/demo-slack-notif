@@ -1,0 +1,21 @@
+
+# HIVE STREAMING
+Hi is a company that's out to democratize video
+experiences for organisations and their employees
+
+Hive helps enterprises harness the true power of
+video experience to achieve maximum engagement and
+alignment to goals in this new changing workspace 
+demographics. It does this by maximizing the reach
+and quality of video communication to ensure employees
+and organisations engagement through video.
+
+The hive video platform is integrated into about 25+ 
+video platforms including Facebook Workspace and
+Microsoft Teams. And it includes powerful features
+for video optimization, analytics and proactive testing.
+
+# Challenge
+How can I improve it and make it production ready
+Collect data and stream it to a server
+5th of September, 2022

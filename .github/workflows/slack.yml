@@ -1,4 +1,5 @@
-name: Notify
+# Slack Release Bot Notification Workflow
+name: Slack Notify
 
 on:
   push:
@@ -10,16 +11,19 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+      - name: Convert markdown to slack markdown
+        uses: LoveToKnow/slackify-markdown-action@v1.0.0
+        id: markdown
+        with:
+          text: |
+            A new version of [ts-sdk](https://github.com/commercetools/commercetools-sdk-typescript) was publish to npm :rocket:
       - name: Slack Notification
         uses: rtCamp/action-slack-notify@v2
         env:
           SLACK_CHANNEL: random
-          SLACK_COLOR: ${{ job.status }} # or a specific color like 'good' or '#ff00ff'
-          # SLACK_ICON: https://github.com/rtCamp.png?size=48
-          # SLACK_ICON: https://github.com/ajimae
+          SLACK_COLOR: ${{ job.status }} 
           MSG_MINIMAL: actions url,commit
-          SLACK_ICON: https://raw.githubusercontent.com/ajimae/demo-slack-notif/master/icon.png
           SLACK_TITLE: Typescript SDK Release ✨ 
-          SLACK_MESSAGE: 'A new version of [ts-sdk](https://github.com/commercetools/commercetools-sdk-typescript) was publish to npm :rocket:'
+          SLACK_MESSAGE: ${{steps.markdown.outputs.text}}
           SLACK_USERNAME: rtBot
           SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
