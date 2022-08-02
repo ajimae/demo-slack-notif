@@ -14,7 +14,8 @@ jobs:
         uses: LoveToKnow/slackify-markdown-action@v1.0.0
         id: prmarkdown
         with:
-          text: "[${{github.event.pull_request.title}}](${{github.event.pull_request.html_url}}) \n ${{github.event.pull_request.body}}"
+          # text: "[${{github.event.pull_request.title}}](${{github.event.pull_request.html_url}}) \n ${{github.event.pull_request.body}}"
+          text: "A new version of [ts-sdk](https://github.com/commercetools/commercetools-sdk-typescript)"
       - name: Slack Notification
         uses: rtCamp/action-slack-notify@v2
         env:
