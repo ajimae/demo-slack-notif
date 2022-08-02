@@ -10,6 +10,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+      - name: Convert markdown to slack markdown for pull request
+        uses: LoveToKnow/slackify-markdown-action@v1.0.0
+        id: prmarkdown
+        with:
+          # text: "[${{github.event.pull_request.title}}](${{github.event.pull_request.html_url}}) \n ${{github.event.pull_request.body}}"
+          text: "A new version of [ts-sdk](https://github.com/commercetools/commercetools-sdk-typescript)"
       - name: Slack Notification
         uses: rtCamp/action-slack-notify@v2
         env:
@@ -20,6 +26,7 @@ jobs:
           MSG_MINIMAL: actions url,commit
           SLACK_ICON: https://raw.githubusercontent.com/ajimae/demo-slack-notif/master/icon.png
           SLACK_TITLE: Typescript SDK Release ✨ 
-          SLACK_MESSAGE: 'A new version of [ts-sdk](https://github.com/commercetools/commercetools-sdk-typescript) was publish to npm :rocket:'
+          # SLACK_MESSAGE: 'A new version of [ts-sdk](https://github.com/commercetools/commercetools-sdk-typescript) was publish to npm :rocket:'
+          SLACK_MESSAGE: ${{steps.prmarkdown.outputs.text}}
           SLACK_USERNAME: rtBot
           SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
